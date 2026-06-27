@@ -1,160 +1,103 @@
-import {
-  QrCode,
-  Palette,
-  Smartphone,
-  Download,
-  Sparkles,
-  Wifi,
-  Mail,
-  Phone,
-  UserRound,
-} from "lucide-react";
-import QRGeneratorWrapper from "@/components/qr/QRGeneratorWrapper";
+import type { Metadata } from "next";
+import HomeContent from "./HomeContent";
 
-const FEATURES = [
-  {
-    icon: QrCode,
-    title: "6 xil QR turi",
-    desc: "URL, matn, Wi-Fi, email, telefon va VCard",
+export const metadata: Metadata = {
+  title: "QR Code Generator — Free Online QR Code Creator | Bepul QR Kod",
+  description:
+    "Free QR code generator. Create custom QR codes for URL, text, Wi-Fi, email, phone, VCard. Circle, rounded, classic styles. Gradient, logo, download PNG/SVG. Bepul QR kod yaratish. Бесплатный генератор QR-кодов.",
+  keywords: [
+    "QR code generator", "QR code maker", "free QR code", "QR code online",
+    "URL QR code", "Wi-Fi QR code", "VCard QR", "custom QR code",
+    "QR code with logo", "QR code gradient", "QR code styles",
+    "download QR code", "PNG QR", "SVG QR",
+    "QR kod", "QR kod yaratish", "bepul QR kod", "QR kod generator",
+    "генератор QR кодов", "QR код бесплатно", "создать QR код",
+    "QR kod oluşturucu", "QR Code erstellen", "générateur QR code",
+    "generador código QR", "二维码生成器", "QRコード作成",
+    "QR 코드 생성기", "مولد رموز QR",
+  ],
+  authors: [{ name: "QR Code Generator" }],
+  creator: "QR Code Generator",
+  publisher: "QR Code Generator",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
-  {
-    icon: Sparkles,
-    title: "Har xil stillar",
-    desc: "Doira, yumaloq, klassik va boshqa nuqta shakllari",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    alternateLocale: ["uz_UZ", "ru_RU", "tr_TR", "de_DE", "fr_FR", "es_ES", "zh_CN", "ja_JP", "ko_KR", "ar_SA"],
+    title: "QR Code Generator — Free Online QR Code Creator",
+    description: "Free QR code generator with custom styles, gradients, logos. Create QR codes for URL, text, Wi-Fi, email, phone, VCard. Download PNG, JPG, SVG.",
+    siteName: "QR Code Generator",
   },
-  {
-    icon: Palette,
-    title: "Gradient ranglar",
-    desc: "Chiziqli va doiraviy gradientlar, shablonlar",
+  twitter: {
+    card: "summary_large_image",
+    title: "QR Code Generator — Free Online QR Code Creator",
+    description: "Free QR code generator with custom styles, gradients, logos. Create QR codes for URL, Wi-Fi, VCard and more.",
   },
-  {
-    icon: Smartphone,
-    title: "Logo qo'shish",
-    desc: "Markazga rasm joylash, hajm va marginni sozlash",
+  alternates: {
+    canonical: "/",
+    languages: {
+      "uz": "/",
+      "ru": "/",
+      "en": "/",
+      "tr": "/",
+      "de": "/",
+      "fr": "/",
+      "es": "/",
+      "zh": "/",
+      "ja": "/",
+      "ko": "/",
+      "ar": "/",
+      "x-default": "/",
+    },
   },
-  {
-    icon: Download,
-    title: "PNG, JPG, SVG",
-    desc: "Yuqori sifatli formatda yuklab olish",
+  category: "technology",
+  other: {
+    "google": "notranslate",
   },
-  {
-    icon: UserRound,
-    title: "49+ shriftlar",
-    desc: "Google Fonts va tizim shriftlari bilan matn",
-  },
-];
+};
 
-const QR_TYPES = [
-  { icon: QrCode, label: "URL" },
-  { icon: Wifi, label: "Wi-Fi" },
-  { icon: Mail, label: "Email" },
-  { icon: Phone, label: "Telefon" },
-  { icon: UserRound, label: "VCard" },
-];
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "QR Code Generator",
+  alternateName: ["QR Kod Generator", "Генератор QR-кодов", "QR Kod Oluşturucu", "QR-Code Generator", "Générateur QR Code", "Generador QR", "二维码生成器", "QRコードジェネレーター", "QR 코드 생성기", "مولد QR"],
+  description: "Free online QR code generator. Create custom QR codes for URL, text, Wi-Fi, email, phone, VCard with custom styles, gradients, and logos.",
+  applicationCategory: "UtilityApplication",
+  operatingSystem: "Any",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+  },
+  featureList: [
+    "URL QR codes", "Text QR codes", "Wi-Fi QR codes", "Email QR codes",
+    "Phone QR codes", "VCard QR codes", "Custom dot styles", "Gradient colors",
+    "Logo embedding", "PNG download", "JPG download", "SVG download",
+    "49+ fonts", "8 color templates",
+  ],
+  inLanguage: ["en", "uz", "ru", "tr", "de", "fr", "es", "zh", "ja", "ko", "ar"],
+  isAccessibleForFree: true,
+  browserRequirements: "Requires JavaScript",
+};
 
-export default function Home() {
+export default function Page() {
   return (
-    <div className="min-h-screen bg-[#0a0a1a]">
-      {/* Background effects */}
-      <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-violet-600/8 rounded-full blur-[128px]" />
-        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-cyan-500/8 rounded-full blur-[128px]" />
-      </div>
-
-      {/* Hero */}
-      <header className="relative pt-16 pb-12 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-violet-500/20 bg-violet-500/5 text-violet-300 text-sm font-medium mb-8">
-            <Sparkles className="w-4 h-4" />
-            Bepul & ochiq kodli
-          </div>
-
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6">
-            <span className="bg-gradient-to-r from-white via-white to-zinc-400 bg-clip-text text-transparent">
-              QR Code
-            </span>
-            <br />
-            <span className="bg-gradient-to-r from-violet-400 via-cyan-400 to-violet-400 bg-clip-text text-transparent">
-              Generator
-            </span>
-          </h1>
-
-          <p className="text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto mb-12 leading-relaxed">
-            Har xil turdagi va stildagi QR kodlarni yarating. Doira, yumaloq, gradient —
-            barcha sozlamalar bir joyda.
-          </p>
-
-          {/* Quick type badges */}
-          <div className="flex flex-wrap justify-center gap-3 mb-16">
-            {QR_TYPES.map(({ icon: Icon, label }) => (
-              <div
-                key={label}
-                className="flex items-center gap-2 px-4 py-2 rounded-xl border border-white/10 bg-white/[0.03] text-zinc-300 text-sm"
-              >
-                <Icon className="w-4 h-4 text-violet-400" />
-                {label}
-              </div>
-            ))}
-          </div>
-        </div>
-      </header>
-
-      {/* Features */}
-      <section className="relative px-6 pb-16">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {FEATURES.map((f) => (
-              <div
-                key={f.title}
-                className="group rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5 hover:bg-white/[0.04] hover:border-violet-500/20 transition-all duration-300"
-              >
-                <div className="w-10 h-10 rounded-xl bg-violet-500/10 flex items-center justify-center mb-3 group-hover:bg-violet-500/15 transition-colors">
-                  <f.icon className="w-5 h-5 text-violet-400" />
-                </div>
-                <h3 className="text-sm font-semibold text-white mb-1">{f.title}</h3>
-                <p className="text-xs text-zinc-500 leading-relaxed">{f.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Divider */}
-      <div className="relative px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-        </div>
-      </div>
-
-      {/* Generator Section */}
-      <section className="relative px-6 py-16" id="generator">
-        <div className="max-w-[1200px] mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
-              QR kod yaratish
-            </h2>
-            <p className="text-zinc-500">
-              Ma&apos;lumotni kiriting, stilni tanlang va yuklab oling
-            </p>
-          </div>
-
-          <QRGeneratorWrapper />
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="relative border-t border-white/[0.06] py-8 px-6 mt-8">
-        <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2 text-zinc-500 text-sm">
-            <QrCode className="w-4 h-4" />
-            <span>QR Code Generator &copy; {new Date().getFullYear()}</span>
-          </div>
-          <p className="text-xs text-zinc-600">
-            Barcha QR kodlar brauzeringizda yaratiladi. Hech qanday ma&apos;lumot serverga yuborilmaydi.
-          </p>
-        </div>
-      </footer>
-    </div>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <HomeContent />
+    </>
   );
 }

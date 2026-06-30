@@ -39,7 +39,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 
 ## Telegram bot backend
 
-This app includes a Telegram webhook endpoint at `/api/telegram/webhook`.
+This app can start the Telegram bot automatically when Next starts in Node runtime.
 
 Add these environment variables:
 
@@ -48,9 +48,12 @@ TELEGRAM_BOT_TOKEN=123456:ABCDEF...
 TELEGRAM_BOT_USERNAME=smart_qr_generator_bot
 TELEGRAM_APP_URL=https://t.me/smart_qr_generator_bot/smartqr
 TELEGRAM_WEBHOOK_SECRET=some-random-secret
+TELEGRAM_BOT_MODE=polling
 ```
 
-Set the webhook once after deploying the app:
+With `TELEGRAM_BOT_MODE=polling`, `next dev` and `next start` will launch the bot from the server startup hook.
+
+If you prefer webhook mode in production, keep the `/api/telegram/webhook` route and set the webhook once after deploying the app:
 
 ```bash
 https://api.telegram.org/bot<YOUR_BOT_TOKEN>/setWebhook?url=https://your-domain.com/api/telegram/webhook&secret_token=<YOUR_SECRET>

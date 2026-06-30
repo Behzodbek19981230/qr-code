@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 import {
 	TELEGRAM_BOT_TOKEN,
-	TELEGRAM_BOT_USERNAME,
 	buildStartKeyboard,
+	buildStartMessage,
 	isStartCommand,
 	TELEGRAM_WEBHOOK_SECRET,
 	type TelegramUpdate,
@@ -10,7 +10,11 @@ import {
 
 export const runtime = 'nodejs';
 
-async function sendTelegramMessage(chatId: number | string, text: string) {
+async function sendTelegramMessage(
+	chatId: number | string,
+	text: string,
+	options?: { parseMode?: 'HTML' | 'MarkdownV2' },
+) {
 	if (!TELEGRAM_BOT_TOKEN) {
 		return false;
 	}
@@ -23,6 +27,7 @@ async function sendTelegramMessage(chatId: number | string, text: string) {
 		body: JSON.stringify({
 			chat_id: chatId,
 			text,
+			parse_mode: options?.parseMode,
 			reply_markup: buildStartKeyboard(),
 		}),
 	});
@@ -57,10 +62,9 @@ export async function POST(request: Request) {
 		return NextResponse.json({ ok: false, error: 'Missing chat id' }, { status: 400 });
 	}
 
-	const message =
-		`Salom! ${TELEGRAM_BOT_USERNAME} botiga xush kelibsiz. ` + 'Appni ochish uchun pastdagi knopkani bosing.';
+	const message = buildStartMessage();
 
-	const sent = await sendTelegramMessage(chatId, message);
+	const sent = await sendTelegramMessage(chatId, message, { parseMode: 'HTML' });
 
 	return NextResponse.json({ ok: true, sent });
 }

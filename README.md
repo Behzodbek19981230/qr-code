@@ -45,8 +45,8 @@ Add these environment variables:
 
 ```bash
 TELEGRAM_BOT_TOKEN=123456:ABCDEF...
-TELEGRAM_BOT_USERNAME=smart_qr_generator_bot
-TELEGRAM_APP_URL=https://t.me/smart_qr_generator_bot/smartqr
+TELEGRAM_BOT_USERNAME=qrcodeer_bot
+TELEGRAM_APP_URL=t.me/qrcodeer_bot/app
 TELEGRAM_WEBHOOK_SECRET=some-random-secret
 TELEGRAM_BOT_MODE=polling
 ```
